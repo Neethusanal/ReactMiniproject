@@ -17,6 +17,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/miniprojectreact",{
 }).catch(err=>{
 console.log(err.message)
 });
+app.use(cookieParser())
 
 
 app.use(cors({
@@ -26,4 +27,3 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use('/',authRoutes)
-app.use(cookieParser())

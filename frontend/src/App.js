@@ -1,8 +1,10 @@
 import React from 'react'
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
-import Home from './Pages/Home';
-import Login from './Pages/Login';
-import Register from './Pages/Register'
+import Home from './Pages/HomePage';
+import Login from './Pages/LoginPage';
+import Register from './Pages/RegisterPage'
+import Profile from './Pages/ProfilePage';
+
 
 
 export default function App() {
@@ -14,6 +16,7 @@ export default function App() {
         </Route>
         <Route exact path='/login' element={<Login/>}/>
         <Route exact path='/' element={<Home/>}/>
+        <Route exact path='/profile' element={<Profile/>}/>
         
       </Routes>
     </BrowserRouter>

@@ -3,7 +3,7 @@ import { Link,useNavigate } from 'react-router-dom'
 import '../index.css'
 import swal from 'sweetalert';
 import axios from 'axios';
-
+import './Login.css'
 
 
 export default function Register() {
@@ -35,7 +35,7 @@ export default function Register() {
                     }
                 }
             }catch(err){
-                    console.log(err)
+                    console.log(err,"login error")
             }
 
         }
