@@ -18,7 +18,7 @@ html {
   .profileContainer {
     background-color: #fff;
     color: black;
-    width: 400px;
+    width: 500px;
     height: 400px;
     display: flex;
     flex-direction: column;

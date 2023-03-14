@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
-import { setUserDetails } from '../Redux/UserSlice';
+import { setUserDetails } from "../Redux/UserSlice";
 import swal from 'sweetalert';
 
 
 
 
 
-export default function Home() {
 
+export default function Home() {
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [cookie, setCookie, removeCookie] = useCookies([]);
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ export default function Home() {
           {},
           { withCredentials: true }
         );
-        console.log(data);
+      
         if (!data.status) {
           removeCookie("jwt");
           navigate("/login");
@@ -59,7 +60,7 @@ export default function Home() {
   return (
     <>
     <div className="container">
-      <h1 style={{ textAlign: "center" }}>Welcome   </h1>
+      <h1 style={{ textAlign: "center" }}>Welcome {user.name}  </h1>
       <div  >
         <button  
           onClick={() => {

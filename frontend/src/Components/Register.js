@@ -17,7 +17,7 @@ export default function Register() {
         
         const handleSubmit=async (e)=>{
             e.preventDefault()
-            console.log(e,"inside e")
+         
             try{
 
                 const {data}=await axios.post("http://localhost:4000/register",{

@@ -17,6 +17,9 @@ const userSchema=  new mongoose.Schema({
         required:[true,"password is required"],
         
     },
+    image: {
+        type: Object,
+      },
     phone:{
         type:Number,
         required:[true,"phone no is required"],
