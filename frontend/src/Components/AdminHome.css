@@ -1,4 +1,4 @@
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -7,7 +7,7 @@
   body {
     background: #89aaca !important;
     overflow-x: hidden !important;
-  }
+  } */
   
    .editBtn {
     margin-right: 5px;
@@ -76,6 +76,17 @@
     width:800px;
   }
  .container{
-    height:500px;
+    height:600px;
     width:100%;
  }
+ .displaybtn{
+    height:100px;
+    width: 100%;
+    padding-bottom: 10px;;
+
+    
+ }
+.nameheading{
+    height:50px;
+    width:800px;
+}

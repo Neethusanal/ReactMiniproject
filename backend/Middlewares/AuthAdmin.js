@@ -14,7 +14,7 @@ module.exports.VerifyAdmin = (req, res, next) => {
         } else {
           const admin = await AdminModel.findById({ _id: decodedToken.id });
           if (admin) {
-            res.json({status:true,admin:admin});
+            // res.json({status:true,admin:admin});
             next();
           } else {
             res.json({ status: false });

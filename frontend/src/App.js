@@ -7,6 +7,8 @@ import Profile from './Pages/ProfilePage';
 import UpdateProfile from './Pages/UpdateProfilePage'
 import Adminlogin from './Pages/AdminloginPage';
 import Adminhome from './Pages/AdminHomePage';
+import Edituserpage from './Pages/Edituserpage';
+import Adduserpage from './Pages/Adduserpage';
 
 
 
@@ -23,6 +25,8 @@ export default function App() {
         <Route exact path='/UpdateProfile' element={<UpdateProfile/>}/>
         <Route exact path='/Adminlogin' element={<Adminlogin/>}/>
         <Route exact path='/Adminhome' element={<Adminhome/>}/>
+        <Route exact path='/edituser' element={<Edituserpage/>}/>
+        <Route exact path='/adduser' element={<Adduserpage/>}/>
         
       </Routes>
     </BrowserRouter>

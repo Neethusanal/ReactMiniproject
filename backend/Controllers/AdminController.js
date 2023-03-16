@@ -25,7 +25,7 @@ module.exports.adminLogin=async(req,res)=>{
 
     try{
         const {email,password}=req.body;
-        console.log(req.body)
+        // console.log(req.body)
         const admin = await AdminModel.findOne({email})
         console.log(admin)
         if(admin)
@@ -57,7 +57,7 @@ module.exports.adminLogin=async(req,res)=>{
         
 
     }catch(err)
-    {   console.log(err)
+      {   
         const errors=handleErrors(err)
         res.json({errors,created:false});
     }
@@ -67,23 +67,71 @@ module.exports.getUserData=async(req,res)=>{
     {
         try{
 
-            const users= await UserModel.find({});
-            //console.log(users)
-            res.json({ status: true, message: "success", users });
+            const users= await UserModel.find();
+            // console.log(users)
+            res.json({ status: true, message: "success", users:users });
         }catch(err)
         {
-
+console.log(err,"iuytds");
         }
     }
 };
 module.exports.deleteUser=async(req,res)=>{
     try{
-        let userid=req.params.userid
-        console.log(userid)
-        const user=await UserModel.findByIdAndDelete({_id:userid})
-        console.log(user)
+        let userid=req.params.userId
+        // console.log(userid)
+        const user=await UserModel.deleteOne({_id:userid})
+        // console.log(user)
+        res.json({ message: "User deleted", status: true });
+    }catch(err){
+        res.json({ message: "error", status: false });
+    }
+}
+
+module.exports.editUser=(req,res)=>{
+    try{
+       console.log("here came")
+       
+    UserModel.updateOne({_id:req.body.id},{
+            $set:{
+                name:req.body.name,
+                email:req.body.email,
+                phone:req.body.phone,
+            }
+ 
+        }).then((response)=>{
+            console.log(response,"waszxdcfgvh")
+            res.json({ message: "Updated", status: true });
+
+        })
+
+    }
+    catch(err)
+    {
+        res.json({ message: "Some thing went wrong", status: false })
+    }
+}
+module.exports.addUser=(req,res)=>{
+    try{
+        UserModel.create({
+            name:req.body.name,
+            email:req.body.email,
+            password:req.body.password,
+            phone:req.body.phone
+        }).then((response)=>{
+            console.log(response)
+            res.json({
+                message: "User Created Successfully",
+                status: true,
+                created: true,
+              });
+        }) .catch((error) => {
+            const errors =  handleErrors(error);
+    
+            res.json({ errors, status: false, created: false });
+          });
 
     }catch(err){
-
+        res.json({ errors: { message: "Something gone wrong" }, status: false });
     }
 }
