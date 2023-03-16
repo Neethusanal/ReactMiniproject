@@ -30,6 +30,6 @@ module.exports.updateProfile=async(req,res,next)=>{
         
 
     catch(err){
-
+console.log(err);
     }
 }

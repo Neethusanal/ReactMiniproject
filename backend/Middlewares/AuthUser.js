@@ -15,7 +15,7 @@ module.exports.VerifyUser = (req, res, next) => {
         } else {
           const user = await UserModel.findById({ _id: decodedToken.id });
           if (user) {
-            res.json({status:true,user:user});
+            // res.json({status:true,user:user});
             next();
           } else {
             res.json({ status: false });

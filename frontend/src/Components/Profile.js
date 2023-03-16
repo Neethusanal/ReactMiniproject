@@ -10,6 +10,7 @@ import axios from "axios";
 const Profile = () => {
   const user=useSelector((state)=>state.user)
  
+  console.log(user.image,"imakjyhgfdge")
 
   const [cookie,setCookie,removeCookie]=useCookies([])
   const navigate = useNavigate();

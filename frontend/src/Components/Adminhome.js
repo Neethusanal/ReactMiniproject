@@ -27,31 +27,21 @@ const Adminhome = () => {
             navigate("/admin");
         }
         getUserList()
-    },[cookie, navigate, removeCookie,Adduser]);
+       
+    },[cookie, navigate, removeCookie]);
 
     function getUserList() {
         axios
           .get("http://localhost:4000/admin/userdatas", { withCredentials: true })
           .then((response) => {
-            console.log(response.data,"response");
+           
             setUser(response.data.users);
-            // setFilterData(response.data.users)
+            setAllUsers(response.data.users)
+            
           });
+          
       }
-    //   const filterData = (e) => {
-    //     if (e.target.vlaue != "") {
-    //       setValue(e.target.value);
-    //       const filterUsers = allUsers.filter((o) =>
-    //         Object.keys(o).some((k) =>
-    //           String(o[k]).toLowerCase().includes(e.target.value.toLowerCase())
-    //         )
-    //       );
-    //       setSearch([...filterUsers]);
-    //     } else {
-    //       setValue(e.target.value);
-    //       setAllUsers([...allUsers]);
-    //     }
-    //   };
+   
     
       function deleteUser(userId) {
         console.log(userId)
@@ -69,10 +59,13 @@ const Adminhome = () => {
           });
       }
 
+      
+
 
     
       return (
         <div className='container'>
+          <h1>USER LIST</h1>
         <div className='table'>
         <div className='displaybtn'>
             <button onClick={()=>{
@@ -90,9 +83,9 @@ const Adminhome = () => {
               navigate("/admin");
             }}>Logout</button>
              <div class="input-group">
-            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" /> 
-            <button type="button" class="btn btn-outline-primary">search</button>
-            </div> 
+            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon"  /> 
+         
+            </div>  
         </div>
         
        

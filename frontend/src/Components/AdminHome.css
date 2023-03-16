@@ -19,10 +19,10 @@
     font-weight: 700;
   }
   
-  .btnctr {
+  /* .btnctr {
     display: flex;
     justify-content: end;
-  }
+  } */
   #search {
     margin-right: auto;
     width: max-content;

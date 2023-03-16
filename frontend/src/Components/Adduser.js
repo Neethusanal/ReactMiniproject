@@ -9,6 +9,7 @@ import swal from 'sweetalert'
 
 const Adduser = () => {
    const navigate= useNavigate();
+//    const [users,setUsers]=useState([])
    const [values,setValues]=useState(
     {
         name:"",
@@ -30,6 +31,8 @@ const Adduser = () => {
               console.log(response.data);
               if (response.data.status) {
                swal("User Ceated successfully")
+                // Add the newly created user to the state
+                // setUsers([...users, response.data.user]);
                         
               } else {
                 swal("something wrong happened")
@@ -98,6 +101,12 @@ const Adduser = () => {
             <input type="submit" value="ADD USER" />
           </div>
         </form>
+          {/* Display the list of users */}
+      {/* <ul>
+        {users.map((user) => (
+          <li key={user.id}>{user.name}</li>
+        ))}
+      </ul> */}
       </div>
       
     </div>

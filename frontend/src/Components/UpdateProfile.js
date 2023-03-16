@@ -12,7 +12,7 @@ const UpdateProfile = () => {
   const [image, setImage] = useState("")
   const [cookie,setCookie,removeCookie]=useCookies([])
   const navigate = useNavigate();
-
+console.log(user.image,"image")
   console.log(image,"image file")
   useEffect(()=>{
 
@@ -61,7 +61,7 @@ const UpdateProfile = () => {
               setUserDetails({
                 email: data.user.email,
                 id: data.user._id,
-                image: data.user.image[0],
+                image: data.user.image,
                 name: data.user.name,
                 phone: data.user.phone,
               })
@@ -87,7 +87,7 @@ const navigateToProfilePage = () => {
       <div className="profileContainers">
         <div className="images">
           <img style={{height:200,}}
-           src={user.image? `http://localhost:4000/${user.image.path}`:"http://localhost:4000/image/user-2517433_1280.png"}/>
+           src={user.image? `http://localhost:4000/${user.image.path}`:"http://localhost:4000/${user.image.path}"}/>
         </div>
 
         <div>
