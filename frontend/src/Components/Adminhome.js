@@ -5,11 +5,13 @@ import { useNavigate } from 'react-router-dom'
 import Table from 'react-bootstrap/Table';
 import axios from 'axios';
 import './AdminHome.css'
-import UserSlice from '../Redux/UserSlice';
+
 import { setUserDetails } from '../Redux/UserSlice';
 import { setAdminDetails } from '../Redux/AdminSlice';
-import { Link } from 'react-router-dom';
-import Adduser from './Adduser';
+
+
+
+
 
 
 const Adminhome = () => {
@@ -20,6 +22,7 @@ const Adminhome = () => {
     const dispatch= useDispatch();
     const [search, setSearch] = useState("");
     const [value, setValue] = useState("");
+
 
     useEffect(()=>{
         if (!cookie.jwt) {
@@ -58,9 +61,20 @@ const Adminhome = () => {
             }
           });
       }
-
-      
-
+      const filterData = (e) => {
+        if (e.target.vlaue != "") {
+          setValue(e.target.value);
+          const filterUsers = allUsers.filter((o) =>
+            Object.keys(o).some((k) =>
+              String(o[k]).toLowerCase().includes(e.target.value.toLowerCase())
+            )
+          );
+          setSearch([...filterUsers]);
+        } else {
+          setValue(e.target.value);
+          setAllUsers([...allUsers]);
+        }
+      };
 
     
       return (
@@ -83,8 +97,16 @@ const Adminhome = () => {
               navigate("/adminlogin");
             }}>Logout</button>
              <div class="input-group">
-            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon"  /> 
-         
+             <input
+          type="text"
+          id="search"
+          value={value}
+          name="search"
+          onChange={filterData}
+          className="form-control"
+          placeholder="search.."
+        />
+            
             </div>  
         </div>
         
@@ -101,8 +123,9 @@ const Adminhome = () => {
         </tr>
       </thead>
       <tbody>
-        {user&&  user.map((user,key)=>{
-            return (
+      {value.length > 0
+            ? search.map((user, key) => {
+              return (
                 <tr key={key}>
                   <td>{key + 1}</td>
                   <td>{user.name}</td>
@@ -128,7 +151,36 @@ const Adminhome = () => {
                   </td>
                 </tr>
               );  
-        })}
+        }):
+        user&&  user.map((user,key)=>{
+          return (
+          <tr key={key}>
+            <td>{key + 1}</td>
+            <td>{user.name}</td>
+            <td>{user.email}</td>
+            <td>{user.phone}</td>
+            <td>
+              <button className="editBtn" onClick={()=>{
+                dispatch(
+                  setUserDetails({
+                    name: user.name,
+                    email: user.email,
+                    phone: user.phone,
+                    id: user._id,
+                    image: user.image,
+                  })
+                )
+                navigate('/edituser')
+              }}>Edit</button>
+
+              <button className="deleteBtn" onClick={()=>{
+                deleteUser(user._id)
+              }}>Delete</button>
+            </td>
+          </tr>
+        );  
+  })
+      }
        
         
       </tbody>

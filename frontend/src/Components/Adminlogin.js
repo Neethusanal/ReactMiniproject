@@ -51,7 +51,7 @@ const Adminlogin = () => {
     
       if (data) {
         if (data.errors) {
-          swal("please check your login details");
+          swal(error);
         } else{
          
             navigate("/adminHome");
