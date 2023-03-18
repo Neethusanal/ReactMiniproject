@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import swal from "sweetalert";
 import axios from "axios";
 import { useDispatch,useSelector } from "react-redux";
 import { setUserDetails } from "../Redux/UserSlice";
+import { useCookies } from "react-cookie";
 
 export default function Register() {
   const user = useSelector((state) => state.user);
+  const [cookie,setCookie,removeCookie]=useCookies([])
   const [errors, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -15,6 +17,19 @@ export default function Register() {
     email: "",
     password: "",
   });
+  useEffect(()=>{
+    if (!cookie.jwt){
+      navigate('/login')
+      console.log("userside useeffect")
+    }
+    else
+    {
+      navigate('/')
+      console.log("else user part")
+    }
+
+  },[])
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
 

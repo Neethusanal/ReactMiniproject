@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
@@ -13,6 +13,19 @@ const Adminlogin = () => {
     email: "",
     password: "",
   });
+  useEffect(()=>{
+    if (!cookie.jwt){
+      navigate('/adminlogin')
+      console.log("dfghjkl;")
+    }
+    else
+    {
+      navigate('/AdminHome')
+      console.log("else part")
+    }
+
+  },[])
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
 

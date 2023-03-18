@@ -7,7 +7,7 @@ const {addUser}=require('../Controllers/AdminController')
 const router = require("express").Router();
 router.post('/', adminLogin)
 router.get("/userdatas",VerifyAdmin ,getUserData);
- router.delete('/deleteuser/:userId',deleteUser)
- router.put('/edituser', editUser);
- router.post('/adduser', addUser)
+ router.delete('/deleteuser/:userId',VerifyAdmin,deleteUser)
+ router.put('/edituser',VerifyAdmin, editUser);
+ router.post('/adduser',VerifyAdmin, addUser)
 module.exports = router;

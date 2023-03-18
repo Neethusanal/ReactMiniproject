@@ -80,7 +80,7 @@ const Adminhome = () => {
               );
   
               removeCookie("jwt");
-              navigate("/admin");
+              navigate("/adminlogin");
             }}>Logout</button>
              <div class="input-group">
             <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon"  /> 
