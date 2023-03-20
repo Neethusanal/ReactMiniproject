@@ -37,8 +37,9 @@ const Adduser = () => {
               } else {
                 swal("something wrong happened")
               }
+              navigate('/adminHome')
             })
-            navigate('/adminHome')
+           
         }
   
 
